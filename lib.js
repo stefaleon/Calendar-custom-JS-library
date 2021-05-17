@@ -26,5 +26,10 @@ function countOfDaysPerMonth(year) {
   return [31, februaryDaysCount(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 }
 
+function firstDay(year, month) {
+  const fd = new Date(year, month);
+  return fd.getDay();
+}
+
 exports.data = { days, months };
-exports.methods = { countOfDaysPerMonth };
+exports.methods = { countOfDaysPerMonth, firstDay };

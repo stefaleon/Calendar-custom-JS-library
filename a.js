@@ -1,10 +1,11 @@
 const lib = require('./lib');
 
-console.log(lib); // { methods: { test: [Function: test] } }
-
 // destructuring
-const { test } = lib.methods;
+const { days, months } = lib.data;
+const { countOfDaysPerMonth } = lib.methods;
 
-const res = test();
+console.log(days);
+console.log(months);
 
-console.log(res); // 42
+const res = countOfDaysPerMonth(2021);
+console.log('number of days for each month of 2021', res);

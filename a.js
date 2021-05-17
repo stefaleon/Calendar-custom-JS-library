@@ -2,13 +2,44 @@ const lib = require('./lib');
 
 // destructuring
 const { days } = lib.data;
-const { daysInMonth } = lib.methods;
+const { firstDay, daysInMonth } = lib.methods;
 
-console.log('getDay() day mapping: Sun to Sat -> 0 to 6');
-console.log('getMonth() month mapping: Jan to Dec -> 0 to 11');
-let res = daysInMonth(2021, 4); // month 4 is the fifth month of the year - May
-console.log('May 2021 has', res, 'days');
-res = daysInMonth(2021, 1); // month 1 February
-console.log('Feb 2021 has', res, 'days');
-res = daysInMonth(2020, 1); // month 1 February, 2020 is a leap year
-console.log('Feb 2020 has', res, 'days');
+/*
+Fill the monthly calendar array 
+with 6 week arrays 
+each containing the dates for each week
+in the appropriate position for 
+mapping: Sun to Sat -> 0 to 6
+*/
+function fillMonthlyCalendarPage(year, month) {
+  const day1 = firstDay(year, month);
+  const monthlyCalendar = [];
+  let date = 1;
+
+  for (let i = 0; i < 6; i++) {
+    // create a week array
+    let week = [];
+
+    /*
+    add dates to week
+    fill with null values the date placeholders
+    before the first day of the month
+    and after the last day of the month
+    */
+    for (let j = 0; j < 7; j++) {
+      if ((i === 0 && j < day1) || date > daysInMonth(year, month)) {
+        week.push(null);
+      } else {
+        week.push(date);
+        date++;
+      }
+    }
+
+    // add the week to the monthly calendar array
+    monthlyCalendar.push(week);
+  }
+
+  return monthlyCalendar;
+}
+
+console.log(fillMonthlyCalendarPage(2021, 3)); // April 2021

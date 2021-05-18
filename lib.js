@@ -89,5 +89,41 @@ function fill6x7(year, month) {
   return monthlyCalendar;
 }
 
+/*
+Fill the monthly calendar array 
+with a flat array of 42 dates
+containing the dates for each week
+in the appropriate position for 
+mapping: Sun to Sat -> 0 to 6
+*/
+function fill42(year, month) {
+  const day1 = firstDay(year, month);
+  const monthlyCalendar = [];
+  let date = 1;
+
+  for (let i = 0; i < 42; i++) {
+    /*
+    add dates 
+    fill with null values the date placeholders
+    before the first day of the month
+    and after the last day of the month
+    */
+    if (i < day1 || date > daysInMonth(year, month)) {
+      monthlyCalendar.push(null);
+    } else {
+      monthlyCalendar.push(date);
+      date++;
+    }
+  }
+
+  return monthlyCalendar;
+}
+
 exports.data = { days, months };
-exports.methods = { countOfDaysPerMonth, firstDay, daysInMonth, fill6x7 };
+exports.methods = {
+  countOfDaysPerMonth,
+  firstDay,
+  daysInMonth,
+  fill6x7,
+  fill42,
+};

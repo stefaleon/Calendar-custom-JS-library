@@ -52,11 +52,11 @@ function daysInMonth(year, month) {
 }
 
 /*
-Fill the monthly calendar array 
-with 6 week arrays 
+Fills the monthly calendar array with 6 sub-arrays 
 each containing the dates for each week
-in the appropriate position for 
-mapping: Sun to Sat -> 0 to 6
+in the appropriate position for mapping: Sun to Sat -> 0 to 6
+Fills with null values the date placeholders before the first day of the month and after the last day of the month
+Arguments: 4 digit year, Jan to Dec -> 0 to 11
 */
 function fill6x7(year, month) {
   const day1 = firstDay(year, month);
@@ -90,11 +90,9 @@ function fill6x7(year, month) {
 }
 
 /*
-Fill the monthly calendar array 
-with a flat array of 42 dates
-containing the dates for each week
-in the appropriate position for 
-mapping: Sun to Sat -> 0 to 6
+Fills the monthly calendar array with a flat array of 42 dates
+Fills with null values the date placeholders before the first day of the month and after the last day of the month
+Arguments: 4 digit year, Jan to Dec -> 0 to 11
 */
 function fill42(year, month) {
   const day1 = firstDay(year, month);
@@ -102,12 +100,6 @@ function fill42(year, month) {
   let date = 1;
 
   for (let i = 0; i < 42; i++) {
-    /*
-    add dates 
-    fill with null values the date placeholders
-    before the first day of the month
-    and after the last day of the month
-    */
     if (i < day1 || date > daysInMonth(year, month)) {
       monthlyCalendar.push(null);
     } else {

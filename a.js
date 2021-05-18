@@ -1,6 +1,6 @@
 const lib = require('./lib');
 
 // destructuring
-const { fill42 } = lib.methods;
+const { fill42pn } = lib.methods;
 
-console.log(fill42(2021, 3)); // April 2021
+console.log(fill42pn(2021, 4)); // May 2021

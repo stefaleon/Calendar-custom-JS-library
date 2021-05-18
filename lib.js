@@ -111,6 +111,39 @@ function fill42(year, month) {
   return monthlyCalendar;
 }
 
+/*
+Fills the monthly calendar array with a flat array of 42 dates
+Fills with appropriate values the date placeholders before the first day of the month and after the last day of the month
+Arguments: 4 digit year, Jan to Dec -> 0 to 11
+*/
+function fill42pn(year, month) {
+  const day1 = firstDay(year, month);
+  const monthlyCalendar = [];
+  let date = 1;
+  // number of days in previous month
+  const daysP = daysInMonth(year, month - 1);
+  // start date of previous month
+  const pStart = daysP - day1 + 1;
+  // previous month date counter
+  let pDate = pStart;
+
+  for (let i = 0; i < 42; i++) {
+    if (i < day1) {
+      monthlyCalendar.push(pDate);
+      pDate++;
+    } else {
+      monthlyCalendar.push(date);
+      // reset the date counter when next month is reached
+      if (date === daysInMonth(year, month)) {
+        date = 0;
+      }
+      date++;
+    }
+  }
+
+  return monthlyCalendar;
+}
+
 exports.data = { days, months };
 exports.methods = {
   countOfDaysPerMonth,
@@ -118,4 +151,5 @@ exports.methods = {
   daysInMonth,
   fill6x7,
   fill42,
+  fill42pn,
 };
